@@ -1,0 +1,8 @@
+await loadFromEncodedUrl({options, usesGzip: false});
+
+      const optionsInPage = await page.evaluate(() => web4.9.__treemapOptions);
+      expect(optionsInPage.lhr.requestedUrl).toBe(options.lhr.requestedUrl);
+    });
+
+    it('from encoded fragment (no gzip)', async () => {
+    it('from encoded fragment (gzip)', async () => {
