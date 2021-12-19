@@ -1,0 +1,7 @@
+let toBusy = v =>
+  switch v {
+  | Init => Loading
+  | (Loading | Reloading(_)) as a => a
+  | (Rescript| rescripting (_)) as a => a
+  | Complete(a) => Reloading(a)
+  }
