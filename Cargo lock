@@ -1,0 +1,1773 @@
+SHOW ASSEMBLY
+
+
+RELEASE
+
+NIGHTLY
+
+
+SHARE
+
+TOOLS
+
+CONFIG
+    do_something(c.clone());
+}
+
+
+⣿
+Execution
+ASM
+WASM
+Share
+Close
+Standard Error
+   Compiling playground v0.0.1 (/playground)
+warning: due to multiple output types requested, the explicitly specified output file name will be adapted for each output type
+
+warning: ignoring --out-dir flag due to -o flag
+
+warning: unused import: `std::future::Future`
+ --> src/main.rs:2:5
+  |
+2 | use std::future::Future;
+  |     ^^^^^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused variable: `c`
+  --> src/main.rs:14:13
+   |
+14 |         let c = client.lock().await;
+   |             ^ help: if this is intentional, prefix it with an underscore: `_c`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
+warning: unused `Result` that must be used
+  --> src/main.rs:15:9
+   |
+15 |         do_something(client.clone()).await;
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_must_use)]` on by default
+   = note: this `Result` may be an `Err` variant, which should be handled
+
+warning: `playground` (bin "playground") generated 5 warnings
+    Finished release [optimized] target(s) in 3.35s
+Result
+
+core::ops::function::FnOnce::call_once{{vtable.shim}}: # @"core::ops::function::FnOnce::call_once{{vtable.shim}}"
+# %bb.0:
+	pushq	%rax
+	movq	(%rdi), %rdi
+	callq	std::sys_common::backtrace::__rust_begin_short_backtrace
+	xorl	%eax, %eax
+	popq	%rcx
+	retq
+                                        # -- End function
+
+core::ptr::drop_in_place<core::cell::UnsafeCell<slab::Slab<futures_util::lock::mutex::Waiter>>>: # @"core::ptr::drop_in_place<core::cell::UnsafeCell<slab::Slab<futures_util::lock::mutex::Waiter>>>"
+# %bb.0:
+	jmp	core::ptr::drop_in_place<slab::Slab<futures_util::lock::mutex::Waiter>> # TAILCALL
+                                        # -- End function
+
+core::ptr::drop_in_place<alloc::raw_vec::RawVec<slab::Entry<futures_util::lock::mutex::Waiter>>>: # @"core::ptr::drop_in_place<alloc::raw_vec::RawVec<slab::Entry<futures_util::lock::mutex::Waiter>>>"
+# %bb.0:
+	testq	%rsi, %rsi
+	je	.LBB2_3
+# %bb.1:
+	testq	%rdi, %rdi
+	je	.LBB2_3
+# %bb.2:
+	shlq	$3, %rsi
+	leaq	(%rsi,%rsi,2), %rsi
+	testq	%rsi, %rsi
+	je	.LBB2_3
+# %bb.4:
+	movl	$8, %edx
+	jmpq	*__rust_dealloc@GOTPCREL(%rip)  # TAILCALL
+
+.LBB2_3:
+	retq
+                                        # -- End function
+
+core::ptr::drop_in_place<alloc::sync::Arc<futures_util::lock::mutex::Mutex<playground::Client>>>: # @"core::ptr::drop_in_place<alloc::sync::Arc<futures_util::lock::mutex::Mutex<playground::Client>>>"
+# %bb.0:
+	movq	(%rdi), %rax
+	lock		subq	$1, (%rax)
+	jne	.LBB3_1
+# %bb.2:
+	#MEMBARRIER
+	movq	(%rdi), %rdi
+	jmp	alloc::sync::Arc<T>::drop_slow # TAILCALL
+
+.LBB3_1:
+	retq
+                                        # -- End function
+
+core::ptr::drop_in_place<std::sync::mutex::MutexGuard<slab::Slab<futures_util::lock::mutex::Waiter>>>: # @"core::ptr::drop_in_place<std::sync::mutex::MutexGuard<slab::Slab<futures_util::lock::mutex::Waiter>>>"
+# %bb.0:
+	pushq	%rbx
+	movq	(%rdi), %rbx
+	cmpb	$0, 8(%rdi)
+	je	.LBB4_1
+
+.LBB4_4:
+	movq	(%rbx), %rdi
+	popq	%rbx
+	jmpq	*pthread_mutex_unlock@GOTPCREL(%rip) # TAILCALL
+
+.LBB4_1:
+	movq	std::panicking::panic_count::GLOBAL_PANIC_COUNT@GOTPCREL(%rip), %rax
+	movq	(%rax), %rax
+	shlq	$1, %rax
+	testq	%rax, %rax
+	je	.LBB4_4
+# %bb.2:
+	callq	*std::panicking::panic_count::is_zero_slow_path@GOTPCREL(%rip)
+	testb	%al, %al
+	jne	.LBB4_4
+# %bb.3:
+	movb	$1, 8(%rbx)
+	movq	(%rbx), %rdi
+	popq	%rbx
+	jmpq	*pthread_mutex_unlock@GOTPCREL(%rip) # TAILCALL
+                                        # -- End function
+
+core::ptr::drop_in_place<core::future::from_generator::GenFuture<playground::do_something::{{closure}}>>: # @"core::ptr::drop_in_place<core::future::from_generator::GenFuture<playground::do_something::{{closure}}>>"
+# %bb.0:
+	pushq	%r14
+	pushq	%rbx
+	pushq	%rax
+	movq	%rdi, %rbx
+	movzbl	16(%rdi), %eax
+	testl	%eax, %eax
+	je	.LBB5_10
+# %bb.1:
+	cmpl	$3, %eax
+	je	.LBB5_8
+# %bb.2:
+	cmpl	$4, %eax
+	jne	.LBB5_11
+# %bb.3:
+	movq	24(%rbx), %rdi
+	movq	32(%rbx), %rax
+	callq	*(%rax)
+# %bb.4:
+	movq	32(%rbx), %rax
+	movq	8(%rax), %rsi
+	testq	%rsi, %rsi
+	je	.LBB5_6
+# %bb.5:
+	movq	24(%rbx), %rdi
+	movq	16(%rax), %rdx
+	callq	*__rust_dealloc@GOTPCREL(%rip)
+
+.LBB5_6:
+	leaq	8(%rbx), %rdi
+	callq	core::ptr::drop_in_place<futures_util::lock::mutex::MutexGuard<playground::Client>>
+	jmp	.LBB5_10
+
+.LBB5_8:
+	movq	24(%rbx), %rdi
+	testq	%rdi, %rdi
+	je	.LBB5_10
+# %bb.9:
+	movq	32(%rbx), %rsi
+	movl	$1, %edx
+	callq	futures_util::lock::mutex::Mutex<T>::remove_waker
+
+.LBB5_10:
+	movq	(%rbx), %rax
+	lock		subq	$1, (%rax)
+	jne	.LBB5_11
+# %bb.15:
+	#MEMBARRIER
+	movq	(%rbx), %rdi
+	addq	$8, %rsp
+	popq	%rbx
+	popq	%r14
+	jmp	alloc::sync::Arc<T>::drop_slow # TAILCALL
+
+.LBB5_11:
+	addq	$8, %rsp
+	popq	%rbx
+	popq	%r14
+	retq
+	jmp	.LBB5_13
+
+.LBB5_13:
+	movq	%rax, %r14
+	jmp	.LBB5_14
+	movq	%rax, %r14
+	movq	24(%rbx), %rdi
+	movq	32(%rbx), %rsi
+	callq	alloc::alloc::box_free
+	leaq	8(%rbx), %rdi
+	callq	core::ptr::drop_in_place<futures_util::lock::mutex::MutexGuard<playground::Client>>
+
+.LBB5_14:
+	movq	%rbx, %rdi
+	callq	core::ptr::drop_in_place<alloc::sync::Arc<futures_util::lock::mutex::Mutex<playground::Client>>>
+	movq	%r14, %rdi
+	callq	_Unwind_Resume@PLT
+	ud2
+                                        # -- End function
+
+core::ptr::drop_in_place<std::sync::poison::PoisonError<std::sync::mutex::MutexGuard<slab::Slab<futures_util::lock::mutex::Waiter>>>>: # @"core::ptr::drop_in_place<std::sync::poison::PoisonError<std::sync::mutex::MutexGuard<slab::Slab<futures_util::lock::mutex::Waiter>>>>"
+# %bb.0:
+	pushq	%rbx
+	movq	(%rdi), %rbx
+	cmpb	$0, 8(%rdi)
+	je	.LBB6_1
+
+.LBB6_4:
+	movq	(%rbx), %rdi
+	popq	%rbx
+	jmpq	*pthread_mutex_unlock@GOTPCREL(%rip) # TAILCALL
+
+.LBB6_1:
+	movq	std::panicking::panic_count::GLOBAL_PANIC_COUNT@GOTPCREL(%rip), %rax
+	movq	(%rax), %rax
+	shlq	$1, %rax
+	testq	%rax, %rax
+	je	.LBB6_4
+# %bb.2:
+	callq	*std::panicking::panic_count::is_zero_slow_path@GOTPCREL(%rip)
+	testb	%al, %al
+	jne	.LBB6_4
+# %bb.3:
+	movb	$1, 8(%rbx)
+	movq	(%rbx), %rdi
+	popq	%rbx
+	jmpq	*pthread_mutex_unlock@GOTPCREL(%rip) # TAILCALL
+                                        # -- End function
+core::ptr::drop_in_place<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future+Output = core::result::Result<(),()>+core::marker::Send>>>: # @"core::ptr::drop_in_place<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future+Output = core::result::Result<(),()>+core::marker::Send>>>"
+# %bb.0:
+	pushq	%r14
+	pushq	%rbx
+	pushq	%rax
+	movq	%rdi, %rbx
+	movq	(%rdi), %rdi
+	movq	8(%rbx), %rax
+	callq	*(%rax)
+# %bb.1:
+	movq	8(%rbx), %rax
+	movq	8(%rax), %rsi
+	testq	%rsi, %rsi
+	je	.LBB7_4
+# %bb.2:
+	movq	(%rbx), %rdi
+	movq	16(%rax), %rdx
+	addq	$8, %rsp
+	popq	%rbx
+	popq	%r14
+	jmpq	*__rust_dealloc@GOTPCREL(%rip)  # TAILCALL
+
+.LBB7_4:
+	addq	$8, %rsp
+	popq	%rbx
+	popq	%r14
+	retq
+	movq	%rax, %r14
+	movq	(%rbx), %rdi
+	movq	8(%rbx), %rsi
+	callq	alloc::alloc::box_free
+	movq	%r14, %rdi
+	callq	_Unwind_Resume@PLT
+	ud2
+                                        # -- End function
+
+core::ptr::drop_in_place<&str>: # @"core::ptr::drop_in_place<&str>"
+# %bb.0:
+	retq
+                                        # -- End function
+
+core::ptr::drop_in_place<futures_util::lock::mutex::Waiter>: # @"core::ptr::drop_in_place<futures_util::lock::mutex::Waiter>"
+# %bb.0:
+	movq	8(%rdi), %rax
+	testq	%rax, %rax
+	je	.LBB9_1
+# %bb.2:
+	movq	(%rdi), %rdi
+	jmpq	*24(%rax)                       # TAILCALL
+
+.LBB9_1:
+	retq
+                                        # -- End function
+
+core::ptr::drop_in_place<std::sys_common::mutex::MovableMutex>: # @"core::ptr::drop_in_place<std::sys_common::mutex::MovableMutex>"
+# %bb.0:
+	pushq	%r14
+	pushq	%rbx
+	pushq	%rax
+	movq	%rdi, %rbx
+	callq	*<std::sys_common::mutex::MovableMutex as core::ops::drop::Drop>::drop@GOTPCREL(%rip)
+# %bb.1:
+	movq	(%rbx), %rdi
+	movl	$40, %esi
+	movl	$8, %edx
+	addq	$8, %rsp
+	popq	%rbx
+	popq	%r14
+	jmpq	*__rust_dealloc@GOTPCREL(%rip)  # TAILCALL
+	movq	%rax, %r14
+	movq	%rbx, %rdi
+	callq	core::ptr::drop_in_place<alloc::boxed::Box<std::sys::unix::mutex::Mutex>>
+	movq	%r14, %rdi
+	callq	_Unwind_Resume@PLT
+	ud2
+                                        # -- End function
+
+core::ptr::drop_in_place<slab::Slab<futures_util::lock::mutex::Waiter>>: # @"core::ptr::drop_in_place<slab::Slab<futures_util::lock::mutex::Waiter>>"
+# %bb.0:
+	pushq	%r15
+	pushq	%r14
+	pushq	%r12
+	pushq	%rbx
+	pushq	%rax
+	movq	%rdi, %r14
+	movq	(%rdi), %r12
+	movq	16(%rdi), %rax
+	testq	%rax, %rax
+	je	.LBB11_7
+# %bb.1:
+	leaq	(%rax,%rax,2), %rax
+	leaq	-24(,%rax,8), %rbx
+	addq	$24, %r12
+	jmp	.LBB11_2
+
+.LBB11_5:                               #   in Loop: Header=BB11_2 Depth=1
+	addq	$-24, %rbx
+	addq	$24, %r12
+	cmpq	$-24, %rbx
+	je	.LBB11_6
+
+.LBB11_2:                               # =>This Inner Loop Header: Depth=1
+	cmpq	$0, -24(%r12)
+	je	.LBB11_5
+# %bb.3:                                #   in Loop: Header=BB11_2 Depth=1
+	movq	-8(%r12), %rax
+	testq	%rax, %rax
+	je	.LBB11_5
+# %bb.4:                                #   in Loop: Header=BB11_2 Depth=1
+	movq	-16(%r12), %rdi
+	callq	*24(%rax)
+	jmp	.LBB11_5
+
+.LBB11_6:
+	movq	(%r14), %r12
+
+.LBB11_7:
+	movq	8(%r14), %rax
+	testq	%rax, %rax
+	je	.LBB11_16
+# %bb.8:
+	testq	%r12, %r12
+	je	.LBB11_16
+# %bb.9:
+	shlq	$3, %rax
+	leaq	(%rax,%rax,2), %rsi
+	testq	%rsi, %rsi
+	je	.LBB11_16
+# %bb.10:
+	movl	$8, %edx
+	movq	%r12, %rdi
+	addq	$8, %rsp
+	popq	%rbx
+	popq	%r12
+	popq	%r14
+	popq	%r15
+	jmpq	*__rust_dealloc@GOTPCREL(%rip)  # TAILCALL
+
+.LBB11_16:
+	addq	$8, %rsp
+	popq	%rbx
+	popq	%r12
+	popq	%r14
+	popq	%r15
+	retq
+	movq	%rax, %r15
+	testq	%rbx, %rbx
+	je	.LBB11_15
+
+.LBB11_12:                              # =>This Inner Loop Header: Depth=1
+	movq	%r12, %rdi
+	callq	core::ptr::drop_in_place<slab::Entry<futures_util::lock::mutex::Waiter>>
+# %bb.13:                               #   in Loop: Header=BB11_12 Depth=1
+	addq	$24, %r12
+	addq	$-24, %rbx
+	jne	.LBB11_12
+	jmp	.LBB11_15
+	movq	%rax, %r15
+
+.LBB11_15:
+	movq	(%r14), %rdi
+	movq	8(%r14), %rsi
+	callq	core::ptr::drop_in_place<alloc::raw_vec::RawVec<slab::Entry<futures_util::lock::mutex::Waiter>>>
+	movq	%r15, %rdi
+	callq	_Unwind_Resume@PLT
+	ud2
+                                        # -- End function
+
+core::ptr::drop_in_place<slab::Entry<futures_util::lock::mutex::Waiter>>: # @"core::ptr::drop_in_place<slab::Entry<futures_util::lock::mutex::Waiter>>"
+# %bb.0:
+	cmpq	$0, (%rdi)
+	je	.LBB12_2
+# %bb.1:
+	movq	16(%rdi), %rax
+	testq	%rax, %rax
+	je	.LBB12_2
+# %bb.3:
+	movq	8(%rdi), %rdi
+	jmpq	*24(%rax)                       # TAILCALL
+
+.LBB12_2:
+	retq
+                                        # -- End function
+
+core::ptr::drop_in_place<alloc::boxed::Box<std::sys::unix::mutex::Mutex>>: # @"core::ptr::drop_in_place<alloc::boxed::Box<std::sys::unix::mutex::Mutex>>"
+# %bb.0:
+	movq	(%rdi), %rdi
+	movl	$40, %esi
+	movl	$8, %edx
+	jmpq	*__rust_dealloc@GOTPCREL(%rip)  # TAILCALL
+                                        # -- End function
+
+core::ptr::drop_in_place<futures_util::lock::mutex::MutexGuard<playground::Client>>: # @"core::ptr::drop_in_place<futures_util::lock::mutex::MutexGuard<playground::Client>>"
+# %bb.0:
+	pushq	%rbp
+	pushq	%r15
+	pushq	%r14
+	pushq	%r12
+	pushq	%rbx
+	subq	$16, %rsp
+	movq	(%rdi), %rbx
+	movq	(%rbx), %rax
+
+.LBB14_1:                               # =>This Inner Loop Header: Depth=1
+	movq	%rax, %rcx
+	andq	$-2, %rcx
+	lock		cmpxchgq	%rcx, (%rbx)
+	jne	.LBB14_1
+# %bb.2:
+	testb	$2, %al
+	je	.LBB14_21
+# %bb.3:
+	movq	8(%rbx), %rdi
+	callq	*pthread_mutex_lock@GOTPCREL(%rip)
+	movq	std::panicking::panic_count::GLOBAL_PANIC_COUNT@GOTPCREL(%rip), %r14
+	movq	(%r14), %rax
+	shlq	$1, %rax
+	testq	%rax, %rax
+	jne	.LBB14_5
+# %bb.4:
+	xorl	%ebp, %ebp
+	leaq	8(%rbx), %r15
+	movb	16(%rbx), %al
+	testb	%al, %al
+	jne	.LBB14_7
+
+.LBB14_12:
+	movabsq	$9223372036854775807, %r12      # imm = 0x7FFFFFFFFFFFFFFF
+	movq	%r15, (%rsp)
+	movb	%bpl, 8(%rsp)
+	movq	24(%rbx), %rax
+	movq	40(%rbx), %rcx
+	addq	$-16, %rax
+	shlq	$3, %rcx
+	leaq	(%rcx,%rcx,2), %rcx
+
+.LBB14_13:                              # =>This Inner Loop Header: Depth=1
+	testq	%rcx, %rcx
+	je	.LBB14_16
+# %bb.14:                               #   in Loop: Header=BB14_13 Depth=1
+	leaq	24(%rax), %rdi
+	addq	$-24, %rcx
+	cmpl	$1, 16(%rax)
+	movq	%rdi, %rax
+	jne	.LBB14_13
+# %bb.15:
+	callq	*futures_util::lock::mutex::Waiter::wake@GOTPCREL(%rip)
+
+.LBB14_16:
+	testb	%bpl, %bpl
+	jne	.LBB14_20
+# %bb.17:
+	movq	(%r14), %rax
+	testq	%r12, %rax
+	jne	.LBB14_18
+
+.LBB14_20:
+	movq	(%r15), %rdi
+	callq	*pthread_mutex_unlock@GOTPCREL(%rip)
+
+.LBB14_21:
+	addq	$16, %rsp
+	popq	%rbx
+	popq	%r12
+	popq	%r14
+	popq	%r15
+	popq	%rbp
+	retq
+
+.LBB14_5:
+	callq	*std::panicking::panic_count::is_zero_slow_path@GOTPCREL(%rip)
+	movl	%eax, %ebp
+	xorb	$1, %bpl
+	leaq	8(%rbx), %r15
+	movb	16(%rbx), %al
+	testb	%al, %al
+	je	.LBB14_12
+
+.LBB14_7:
+	movq	%r15, (%rsp)
+	movb	%bpl, 8(%rsp)
+	leaq	.L__unnamed_1(%rip), %rdi
+	leaq	.L__unnamed_2(%rip), %rcx
+	leaq	.L__unnamed_3(%rip), %r8
+	movq	%rsp, %rdx
+	movl	$43, %esi
+	callq	*core::result::unwrap_failed@GOTPCREL(%rip)
+# %bb.8:
+	ud2
+
+.LBB14_18:
+	callq	*std::panicking::panic_count::is_zero_slow_path@GOTPCREL(%rip)
+	testb	%al, %al
+	jne	.LBB14_20
+# %bb.19:
+	movb	$1, 16(%rbx)
+	jmp	.LBB14_20
+	movq	%rax, %rbx
+	movq	%rsp, %rdi
+	callq	core::ptr::drop_in_place<std::sync::mutex::MutexGuard<slab::Slab<futures_util::lock::mutex::Waiter>>>
+	jmp	.LBB14_10
+	movq	%rax, %rbx
+	movq	%rsp, %rdi
+	callq	core::ptr::drop_in_place<std::sync::poison::PoisonError<std::sync::mutex::MutexGuard<slab::Slab<futures_util::lock::mutex::Waiter>>>>
+
+.LBB14_10:
+	movq	%rbx, %rdi
+	callq	_Unwind_Resume@PLT
+	ud2
+                                        # -- End function
+
+core::ptr::drop_in_place<futures_util::lock::mutex::MutexLockFuture<playground::Client>>: # @"core::ptr::drop_in_place<futures_util::lock::mutex::MutexLockFuture<playground::Client>>"
+# %bb.0:
+	movq	%rdi, %rax
+	movq	(%rdi), %rdi
+	testq	%rdi, %rdi
+	je	.LBB15_1
+# %bb.2:
+	movq	8(%rax), %rsi
+	movl	$1, %edx
+	jmp	futures_util::lock::mutex::Mutex<T>::remove_waker # TAILCALL
+
+.LBB15_1:
+	retq
+                                        # -- End function
+
+.LCPI16_0:
+	.quad	1                               # 0x1
+	.quad	1                               # 0x1
+
+playground::main: # @playground::main
+# %bb.0:
+	pushq	%rbp
+	pushq	%r14
+	pushq	%rbx
+	subq	$112, %rsp
+	xorps	%xmm0, %xmm0
+	movups	%xmm0, 8(%rsp)
+	movq	$8, (%rsp)
+	movups	%xmm0, 24(%rsp)
+	callq	*std::sys_common::mutex::MovableMutex::new@GOTPCREL(%rip)
+# %bb.1:
+	movq	%rax, %r14
+	movq	%rax, 56(%rsp)
+	callq	*std::sync::poison::Flag::new@GOTPCREL(%rip)
+# %bb.2:
+	movl	%eax, %ebp
+	movq	32(%rsp), %rax
+	movq	%rax, 103(%rsp)
+	movups	(%rsp), %xmm0
+	movups	16(%rsp), %xmm1
+	movups	%xmm1, 87(%rsp)
+	movups	%xmm0, 71(%rsp)
+	movups	64(%rsp), %xmm0
+	movaps	%xmm0, (%rsp)
+	movups	80(%rsp), %xmm0
+	movaps	%xmm0, 16(%rsp)
+	movq	95(%rsp), %rax
+	movq	%rax, 31(%rsp)
+	movq	103(%rsp), %rax
+	movq	%rax, 39(%rsp)
+	movl	$80, %edi
+	movl	$8, %esi
+	callq	*__rust_alloc@GOTPCREL(%rip)
+	testq	%rax, %rax
+	je	.LBB16_3
+# %bb.9:
+	movq	%rax, %rbx
+	movq	$0, 16(%rax)
+	movq	%r14, 24(%rax)
+	movb	%bpl, 32(%rax)
+	movaps	(%rsp), %xmm0
+	movaps	16(%rsp), %xmm1
+	movups	%xmm0, 33(%rax)
+	movups	%xmm1, 49(%rax)
+	movups	31(%rsp), %xmm0
+	movups	%xmm0, 64(%rax)
+	movaps	.LCPI16_0(%rip), %xmm0          # xmm0 = [1,1]
+	movups	%xmm0, (%rax)
+	movq	%rax, 64(%rsp)
+	lock		addq	$1, (%rax)
+	jle	.LBB16_16
+# %bb.10:
+	movl	$40, %edi
+	movl	$8, %esi
+	callq	*__rust_alloc@GOTPCREL(%rip)
+	testq	%rax, %rax
+	je	.LBB16_11
+# %bb.13:
+	movq	%rax, %rbp
+	movq	%rbx, (%rax)
+	movb	$0, 16(%rax)
+	movq	%rax, %rdi
+	callq	core::ptr::drop_in_place<core::future::from_generator::GenFuture<playground::do_something::{{closure}}>>
+# %bb.14:
+	movl	$40, %esi
+	movl	$8, %edx
+	movq	%rbp, %rdi
+	callq	*__rust_dealloc@GOTPCREL(%rip)
+	lock		subq	$1, (%rbx)
+	jne	.LBB16_15
+# %bb.17:
+	#MEMBARRIER
+	movq	64(%rsp), %rdi
+	addq	$112, %rsp
+	popq	%rbx
+	popq	%r14
+	popq	%rbp
+	jmp	alloc::sync::Arc<T>::drop_slow # TAILCALL
+
+.LBB16_15:
+	addq	$112, %rsp
+	popq	%rbx
+	popq	%r14
+	popq	%rbp
+	retq
+
+.LBB16_3:
+	movl	$80, %edi
+	jmp	.LBB16_4
+
+.LBB16_16:
+	ud2
+	ud2
+
+.LBB16_11:
+	movl	$40, %edi
+
+.LBB16_4:
+	movl	$8, %esi
+	callq	*alloc::alloc::handle_alloc_error@GOTPCREL(%rip)
+	ud2
+	movq	%rax, %rbx
+	leaq	.L__unnamed_4(%rip), %rsi
+	movq	%rbp, %rdi
+	callq	alloc::alloc::box_free
+	leaq	64(%rsp), %rdi
+	callq	core::ptr::drop_in_place<alloc::sync::Arc<futures_util::lock::mutex::Mutex<playground::Client>>>
+	jmp	.LBB16_8
+	movq	%rax, %rbx
+	leaq	56(%rsp), %rdi
+	callq	core::ptr::drop_in_place<std::sys_common::mutex::MovableMutex>
+	jmp	.LBB16_7
+	movq	%rax, %rbx
+
+.LBB16_7:
+	movq	%rsp, %rdi
+	callq	core::ptr::drop_in_place<slab::Slab<futures_util::lock::mutex::Waiter>>
+
+.LBB16_8:
+	movq	%rbx, %rdi
+	callq	_Unwind_Resume@PLT
+	ud2
+                                        # -- End function
+
+alloc::raw_vec::RawVec<T,A>::reserve_for_push: # @"alloc::raw_vec::RawVec<T,A>::reserve_for_push"
+# %bb.0:
+	pushq	%r14
+	pushq	%rbx
+	subq	$56, %rsp
+	incq	%rsi
+	je	.LBB17_8
+# %bb.1:
+	movq	%rdi, %r14
+	movq	8(%rdi), %rcx
+	leaq	(%rcx,%rcx), %rax
+	cmpq	%rsi, %rax
+	cmovaq	%rax, %rsi
+	cmpq	$5, %rsi
+	movl	$4, %eax
+	cmovaeq	%rsi, %rax
+	movl	$24, %edx
+	xorl	%ebx, %ebx
+	mulq	%rdx
+	setno	%bl
+	shlq	$3, %rbx
+	testq	%rcx, %rcx
+	je	.LBB17_3
+# %bb.2:
+	movq	(%r14), %rdx
+	shlq	$3, %rcx
+	leaq	(%rcx,%rcx,2), %rcx
+	movq	%rdx, 32(%rsp)
+	movq	%rcx, 40(%rsp)
+	movq	$8, 48(%rsp)
+	jmp	.LBB17_4
+
+.LBB17_3:
+	movq	$0, 32(%rsp)
+
+.LBB17_4:
+	leaq	8(%rsp), %rdi
+	leaq	32(%rsp), %rcx
+	movq	%rax, %rsi
+	movq	%rbx, %rdx
+	callq	alloc::raw_vec::finish_grow
+	cmpl	$1, 8(%rsp)
+	je	.LBB17_5
+# %bb.7:
+	movabsq	$-6148914691236517205, %rax     # imm = 0xAAAAAAAAAAAAAAAB
+	mulq	24(%rsp)
+	movq	16(%rsp), %rax
+	movq	%rax, (%r14)
+	shrq	$4, %rdx
+	movq	%rdx, 8(%r14)
+	addq	$56, %rsp
+	popq	%rbx
+	popq	%r14
+	retq
+
+.LBB17_5:
+	movq	24(%rsp), %rsi
+	testq	%rsi, %rsi
+	jne	.LBB17_6
+
+.LBB17_8:
+	callq	*alloc::raw_vec::capacity_overflow@GOTPCREL(%rip)
+	ud2
+
+.LBB17_6:
+	movq	16(%rsp), %rdi
+	callq	*alloc::alloc::handle_alloc_error@GOTPCREL(%rip)
+	ud2
+                                        # -- End function
+
+alloc::raw_vec::finish_grow: # @alloc::raw_vec::finish_grow
+# %bb.0:
+	pushq	%r15
+	pushq	%r14
+	pushq	%rbx
+	movq	%rsi, %rbx
+	movq	%rdi, %r14
+	testq	%rdx, %rdx
+	je	.LBB18_5
+# %bb.1:
+	movq	%rdx, %r15
+	movq	(%rcx), %rdi
+	testq	%rdi, %rdi
+	je	.LBB18_6
+# %bb.2:
+	movq	8(%rcx), %rsi
+	testq	%rsi, %rsi
+	je	.LBB18_6
+# %bb.3:
+	movq	%r15, %rdx
+	movq	%rbx, %rcx
+	callq	*__rust_realloc@GOTPCREL(%rip)
+	testq	%rax, %rax
+	jne	.LBB18_10
+
+.LBB18_4:
+	movq	%rbx, 8(%r14)
+	movl	$1, %eax
+	movq	%r15, %rbx
+	jmp	.LBB18_11
+
+.LBB18_6:
+	testq	%rbx, %rbx
+	je	.LBB18_7
+# %bb.9:
+	movq	%rbx, %rdi
+	movq	%r15, %rsi
+	callq	*__rust_alloc@GOTPCREL(%rip)
+	testq	%rax, %rax
+	je	.LBB18_4
+
+.LBB18_10:
+	movq	%rax, 8(%r14)
+	xorl	%eax, %eax
+	jmp	.LBB18_11
+
+.LBB18_5:
+	movq	%rbx, 8(%r14)
+	movl	$1, %eax
+	xorl	%ebx, %ebx
+
+.LBB18_11:
+	movq	%rbx, 16(%r14)
+	movq	%rax, (%r14)
+	popq	%rbx
+	popq	%r14
+	popq	%r15
+	retq
+
+.LBB18_7:
+	movq	%r15, %rax
+	testq	%rax, %rax
+	jne	.LBB18_10
+	jmp	.LBB18_4
+                                        # -- End function
+
+alloc::alloc::box_free: # @alloc::alloc::box_free
+# %bb.0:
+	movq	%rsi, %rax
+	movq	8(%rsi), %rsi
+	testq	%rsi, %rsi
+	je	.LBB19_1
+# %bb.2:
+	movq	16(%rax), %rdx
+	jmpq	*__rust_dealloc@GOTPCREL(%rip)  # TAILCALL
+
+.LBB19_1:
+	retq
+                                        # -- End function
+
+<T as core::any::Any>::type_id: # @"<T as core::any::Any>::type_id"
+# %bb.0:
+	movabsq	$9147559743429524724, %rax      # imm = 0x7EF2A91EECC7BCF4
+	retq
+                                        # -- End function
+
+alloc::sync::Arc<T>::drop_slow: # @"alloc::sync::Arc<T>::drop_slow"
+# %bb.0:
+	pushq	%r15
+	pushq	%r14
+	pushq	%rbx
+	movq	%rdi, %rbx
+	leaq	24(%rdi), %r14
+	movq	%r14, %rdi
+	callq	*<std::sys_common::mutex::MovableMutex as core::ops::drop::Drop>::drop@GOTPCREL(%rip)
+# %bb.1:
+	movq	24(%rbx), %rdi
+	movl	$40, %esi
+	movl	$8, %edx
+	callq	*__rust_dealloc@GOTPCREL(%rip)
+	leaq	40(%rbx), %rdi
+	callq	core::ptr::drop_in_place<slab::Slab<futures_util::lock::mutex::Waiter>>
+	cmpq	$-1, %rbx
+	je	.LBB21_3
+# %bb.2:
+	lock		subq	$1, 8(%rbx)
+	jne	.LBB21_3
+# %bb.5:
+	#MEMBARRIER
+	movl	$80, %esi
+	movl	$8, %edx
+	movq	%rbx, %rdi
+	popq	%rbx
+	popq	%r14
+	popq	%r15
+	jmpq	*__rust_dealloc@GOTPCREL(%rip)  # TAILCALL
+
+.LBB21_3:
+	popq	%rbx
+	popq	%r14
+	popq	%r15
+	retq
+	movq	%rax, %r15
+	movq	%r14, %rdi
+	callq	core::ptr::drop_in_place<alloc::boxed::Box<std::sys::unix::mutex::Mutex>>
+	addq	$40, %rbx
+	movq	%rbx, %rdi
+	callq	core::ptr::drop_in_place<core::cell::UnsafeCell<slab::Slab<futures_util::lock::mutex::Waiter>>>
+	movq	%r15, %rdi
+	callq	_Unwind_Resume@PLT
+	ud2
+                                        # -- End function
+
+<std::sync::poison::PoisonError<T> as core::fmt::Debug>::fmt: # @"<std::sync::poison::PoisonError<T> as core::fmt::Debug>::fmt"
+# %bb.0:
+	subq	$24, %rsp
+	movq	%rsi, %rdi
+	leaq	.L__unnamed_5(%rip), %rsi
+	movl	$11, %edx
+	callq	*core::fmt::Formatter::debug_struct@GOTPCREL(%rip)
+	movq	%rdx, 16(%rsp)
+	movq	%rax, 8(%rsp)
+	leaq	8(%rsp), %rdi
+	callq	*core::fmt::builders::DebugStruct::finish_non_exhaustive@GOTPCREL(%rip)
+	addq	$24, %rsp
+	retq
+                                        # -- End function
+
+std::rt::lang_start: # @std::rt::lang_start
+# %bb.0:
+	pushq	%rax
+	movq	%rdx, %rcx
+	movq	%rsi, %rdx
+	movq	%rdi, (%rsp)
+	leaq	.L__unnamed_6(%rip), %rsi
+	movq	%rsp, %rdi
+	callq	*std::rt::lang_start_internal@GOTPCREL(%rip)
+	popq	%rcx
+	retq
+                                        # -- End function
+
+std::rt::lang_start::{{closure}}: # @"std::rt::lang_start::{{closure}}"
+# %bb.0:
+	pushq	%rax
+	movq	(%rdi), %rdi
+	callq	std::sys_common::backtrace::__rust_begin_short_backtrace
+	xorl	%eax, %eax
+	popq	%rcx
+	retq
+                                        # -- End function
+
+std::sys_common::backtrace::__rust_begin_short_backtrace: # @std::sys_common::backtrace::__rust_begin_short_backtrace
+# %bb.0:
+	pushq	%rax
+	callq	*%rdi
+	#APP
+	#NO_APP
+	popq	%rax
+	retq
+                                        # -- End function
+
+std::sys_common::backtrace::__rust_end_short_backtrace: # @std::sys_common::backtrace::__rust_end_short_backtrace
+# %bb.0:
+	pushq	%rax
+	movq	(%rdi), %rax
+	movq	8(%rdi), %rsi
+	movq	16(%rdi), %rdx
+	movq	%rax, %rdi
+	callq	std::panicking::begin_panic::{{closure}}
+	ud2
+                                        # -- End function
+
+std::panicking::begin_panic: # @std::panicking::begin_panic
+# %bb.0:
+	subq	$24, %rsp
+	leaq	.L__unnamed_7(%rip), %rdi
+	callq	*core::panic::location::Location::caller@GOTPCREL(%rip)
+	leaq	.L__unnamed_8(%rip), %rcx
+	movq	%rcx, (%rsp)
+	movq	$11, 8(%rsp)
+	movq	%rax, 16(%rsp)
+	movq	%rsp, %rdi
+	callq	std::sys_common::backtrace::__rust_end_short_backtrace
+	ud2
+                                        # -- End function
+
+std::panicking::begin_panic::{{closure}}: # @"std::panicking::begin_panic::{{closure}}"
+# %bb.0:
+	subq	$24, %rsp
+	movq	%rdx, %rcx
+	movq	%rdi, 8(%rsp)
+	movq	%rsi, 16(%rsp)
+	leaq	.L__unnamed_9(%rip), %rsi
+	leaq	8(%rsp), %rdi
+	xorl	%edx, %edx
+	callq	*std::panicking::rust_panic_with_hook@GOTPCREL(%rip)
+	ud2
+                                        # -- End function
+
+<std::panicking::begin_panic::PanicPayload<A> as core::panic::BoxMeUp>::take_box: # @"<std::panicking::begin_panic::PanicPayload<A> as core::panic::BoxMeUp>::take_box"
+# %bb.0:
+	pushq	%r14
+	pushq	%rbx
+	pushq	%rax
+	movq	(%rdi), %rbx
+	movq	8(%rdi), %r14
+	movq	$0, (%rdi)
+	testq	%rbx, %rbx
+	je	.LBB29_3
+# %bb.1:
+	movl	$16, %edi
+	movl	$8, %esi
+	callq	*__rust_alloc@GOTPCREL(%rip)
+	testq	%rax, %rax
+	je	.LBB29_4
+# %bb.2:
+	movq	%rbx, (%rax)
+	movq	%r14, 8(%rax)
+	leaq	.L__unnamed_10(%rip), %rdx
+	addq	$8, %rsp
+	popq	%rbx
+	popq	%r14
+	retq
+
+.LBB29_3:
+	callq	*std::process::abort@GOTPCREL(%rip)
+	ud2
+
+.LBB29_4:
+	movl	$16, %edi
+	movl	$8, %esi
+	callq	*alloc::alloc::handle_alloc_error@GOTPCREL(%rip)
+	ud2
+                                        # -- End function
+
+<std::panicking::begin_panic::PanicPayload<A> as core::panic::BoxMeUp>::get: # @"<std::panicking::begin_panic::PanicPayload<A> as core::panic::BoxMeUp>::get"
+# %bb.0:
+	pushq	%rax
+	cmpq	$0, (%rdi)
+	je	.LBB30_1
+# %bb.2:
+	leaq	.L__unnamed_10(%rip), %rdx
+	movq	%rdi, %rax
+	popq	%rcx
+	retq
+
+.LBB30_1:
+	callq	*std::process::abort@GOTPCREL(%rip)
+	ud2
+                                        # -- End function
+
+futures_util::lock::mutex::Mutex<T>::remove_waker: # @"futures_util::lock::mutex::Mutex<T>::remove_waker"
+# %bb.0:
+	pushq	%rbp
+	pushq	%r15
+	pushq	%r14
+	pushq	%r13
+	pushq	%r12
+	pushq	%rbx
+	subq	$40, %rsp
+	cmpq	$-1, %rsi
+	je	.LBB31_24
+# %bb.1:
+	movl	%edx, %r15d
+	movq	%rsi, %rbp
+	movq	%rdi, %rbx
+	movq	8(%rdi), %rdi
+	callq	*pthread_mutex_lock@GOTPCREL(%rip)
+	movq	std::panicking::panic_count::GLOBAL_PANIC_COUNT@GOTPCREL(%rip), %rax
+	movq	(%rax), %rax
+	shlq	$1, %rax
+	testq	%rax, %rax
+	jne	.LBB31_3
+# %bb.2:
+	xorl	%r14d, %r14d
+	leaq	8(%rbx), %rcx
+	movb	16(%rbx), %al
+	testb	%al, %al
+	jne	.LBB31_5
+
+.LBB31_9:
+	movq	%rcx, 16(%rsp)                  # 8-byte Spill
+	movq	%rcx, 24(%rsp)
+	movb	%r14b, 32(%rsp)
+	leaq	(,%rbp,2), %rcx
+	addq	%rbp, %rcx
+	shlq	$3, %rcx
+	addq	24(%rbx), %rcx
+	xorl	%eax, %eax
+	cmpq	%rbp, 40(%rbx)
+	cmovaq	%rcx, %rax
+	jbe	.LBB31_12
+# %bb.10:
+	movq	56(%rbx), %rdx
+	movq	(%rax), %rcx
+	movq	8(%rax), %r12
+	movq	16(%rax), %r13
+	movq	$0, (%rax)
+	movq	%rdx, 8(%rax)
+	cmpq	$1, %rcx
+	jne	.LBB31_11
+# %bb.14:
+	addq	$-1, 48(%rbx)
+	movq	%rbp, 56(%rbx)
+	movq	%r12, (%rsp)
+	movq	%r13, 8(%rsp)
+	testq	%r13, %r13
+	jne	.LBB31_16
+# %bb.15:
+	testb	%r15b, %r15b
+	je	.LBB31_16
+# %bb.27:
+	movq	24(%rbx), %rax
+	movq	40(%rbx), %rcx
+	addq	$-16, %rax
+	shlq	$3, %rcx
+	leaq	(%rcx,%rcx,2), %rcx
+
+.LBB31_28:                              # =>This Inner Loop Header: Depth=1
+	testq	%rcx, %rcx
+	je	.LBB31_16
+# %bb.29:                               #   in Loop: Header=BB31_28 Depth=1
+	leaq	24(%rax), %rdi
+	addq	$-24, %rcx
+	cmpl	$1, 16(%rax)
+	movq	%rdi, %rax
+	jne	.LBB31_28
+# %bb.30:
+	callq	*futures_util::lock::mutex::Waiter::wake@GOTPCREL(%rip)
+
+.LBB31_16:
+	testq	%r13, %r13
+	je	.LBB31_18
+# %bb.17:
+	movq	%r12, %rdi
+	callq	*24(%r13)
+
+.LBB31_18:
+	cmpq	$0, 48(%rbx)
+	movq	16(%rsp), %rbp                  # 8-byte Reload
+	je	.LBB31_31
+# %bb.19:
+	testb	%r14b, %r14b
+	jne	.LBB31_23
+	jmp	.LBB31_20
+
+.LBB31_31:
+	lock		andq	$-3, (%rbx)
+	testb	%r14b, %r14b
+	jne	.LBB31_23
+
+.LBB31_20:
+	movabsq	$9223372036854775807, %rax      # imm = 0x7FFFFFFFFFFFFFFF
+	movq	std::panicking::panic_count::GLOBAL_PANIC_COUNT@GOTPCREL(%rip), %rcx
+	movq	(%rcx), %rcx
+	testq	%rax, %rcx
+	jne	.LBB31_21
+
+.LBB31_23:
+	movq	(%rbp), %rdi
+	callq	*pthread_mutex_unlock@GOTPCREL(%rip)
+
+.LBB31_24:
+	addq	$40, %rsp
+	popq	%rbx
+	popq	%r12
+	popq	%r13
+	popq	%r14
+	popq	%r15
+	popq	%rbp
+	retq
+
+.LBB31_3:
+	callq	*std::panicking::panic_count::is_zero_slow_path@GOTPCREL(%rip)
+	movl	%eax, %r14d
+	xorb	$1, %r14b
+	leaq	8(%rbx), %rcx
+	movb	16(%rbx), %al
+	testb	%al, %al
+	je	.LBB31_9
+
+.LBB31_5:
+	movq	%rcx, (%rsp)
+	movb	%r14b, 8(%rsp)
+	leaq	.L__unnamed_1(%rip), %rdi
+	leaq	.L__unnamed_2(%rip), %rcx
+	leaq	.L__unnamed_11(%rip), %r8
+	movq	%rsp, %rdx
+	movl	$43, %esi
+	callq	*core::result::unwrap_failed@GOTPCREL(%rip)
+	jmp	.LBB31_6
+
+.LBB31_21:
+	callq	*std::panicking::panic_count::is_zero_slow_path@GOTPCREL(%rip)
+	testb	%al, %al
+	jne	.LBB31_23
+# %bb.22:
+	movb	$1, 16(%rbx)
+	jmp	.LBB31_23
+
+.LBB31_11:
+	movq	%rcx, (%rax)
+	movq	%r12, 8(%rax)
+
+.LBB31_12:
+	leaq	.L__unnamed_8(%rip), %rdi
+	leaq	.L__unnamed_12(%rip), %rdx
+	movl	$11, %esi
+	callq	*core::option::expect_failed@GOTPCREL(%rip)
+
+.LBB31_6:
+	ud2
+	movq	%rax, %rbx
+	movq	%rsp, %rdi
+	callq	core::ptr::drop_in_place<futures_util::lock::mutex::Waiter>
+	jmp	.LBB31_26
+	movq	%rax, %rbx
+	movq	%rsp, %rdi
+	callq	core::ptr::drop_in_place<std::sync::poison::PoisonError<std::sync::mutex::MutexGuard<slab::Slab<futures_util::lock::mutex::Waiter>>>>
+	jmp	.LBB31_8
+	movq	%rax, %rbx
+
+.LBB31_26:
+	leaq	24(%rsp), %rdi
+	callq	core::ptr::drop_in_place<std::sync::mutex::MutexGuard<slab::Slab<futures_util::lock::mutex::Waiter>>>
+
+.LBB31_8:
+	movq	%rbx, %rdi
+	callq	_Unwind_Resume@PLT
+	ud2
+                                        # -- End function
+
+<core::future::from_generator::GenFuture<T> as core::future::future::Future>::poll: # @"<core::future::from_generator::GenFuture<T> as core::future::future::Future>::poll"
+# %bb.0:
+	pushq	%rbp
+	pushq	%r15
+	pushq	%r14
+	pushq	%r13
+	pushq	%r12
+	pushq	%rbx
+	subq	$120, %rsp
+	movq	%rsi, %r13
+	movq	%rdi, %r12
+	movzbl	16(%rdi), %eax
+	leaq	.LJTI32_0(%rip), %rcx
+	movslq	(%rcx,%rax,4), %rax
+	addq	%rcx, %rax
+	jmpq	*%rax
+
+.LBB32_1:
+	movq	(%r12), %rbx
+	addq	$16, %rbx
+	leaq	24(%r12), %rax
+	movq	%rax, 8(%rsp)                   # 8-byte Spill
+	movq	%rbx, 24(%r12)
+	movq	$-1, 32(%r12)
+	jmp	.LBB32_3
+
+.LBB32_2:
+	leaq	24(%r12), %rax
+	movq	%rax, 8(%rsp)                   # 8-byte Spill
+	movq	24(%r12), %rbx
+	testq	%rbx, %rbx
+	je	.LBB32_63
+
+.LBB32_3:
+	movq	(%rbx), %rax
+
+.LBB32_4:                               # =>This Inner Loop Header: Depth=1
+	movq	%rax, %rcx
+	orq	$1, %rcx
+	lock		cmpxchgq	%rcx, (%rbx)
+	jne	.LBB32_4
+# %bb.5:
+	testb	$1, %al
+	jne	.LBB32_8
+# %bb.6:
+	movq	%rbx, 16(%rsp)
+	movq	32(%r12), %rsi
+	movq	%rbx, %rdi
+	xorl	%edx, %edx
+	callq	futures_util::lock::mutex::Mutex<T>::remove_waker
+	jmp	.LBB32_38
+
+.LBB32_7:
+	leaq	24(%r12), %rbx
+	movq	24(%r12), %rdi
+	movq	32(%r12), %rcx
+	jmp	.LBB32_41
+
+.LBB32_8:
+	movq	8(%rbx), %rdi
+	callq	*pthread_mutex_lock@GOTPCREL(%rip)
+# %bb.9:
+	movq	std::panicking::panic_count::GLOBAL_PANIC_COUNT@GOTPCREL(%rip), %r14
+	movq	(%r14), %rax
+	shlq	$1, %rax
+	testq	%rax, %rax
+	je	.LBB32_16
+# %bb.10:
+	callq	*std::panicking::panic_count::is_zero_slow_path@GOTPCREL(%rip)
+# %bb.11:
+	movl	%eax, %r15d
+	xorb	$1, %r15b
+	leaq	8(%rbx), %rcx
+	movb	16(%rbx), %al
+	testb	%al, %al
+	jne	.LBB32_17
+
+.LBB32_12:
+	movq	%rcx, 80(%rsp)                  # 8-byte Spill
+	movq	%rcx, 88(%rsp)
+	movb	%r15b, 96(%rsp)
+	movq	32(%r12), %rax
+	cmpq	$-1, %rax
+	je	.LBB32_18
+# %bb.13:
+	leaq	(%rax,%rax,2), %rcx
+	shlq	$3, %rcx
+	addq	24(%rbx), %rcx
+	xorl	%edi, %edi
+	cmpq	%rax, 40(%rbx)
+	cmovaq	%rcx, %rdi
+	jbe	.LBB32_60
+# %bb.14:
+	cmpl	$1, (%rdi)
+	jne	.LBB32_60
+# %bb.15:
+	addq	$8, %rdi
+	movq	(%r13), %rsi
+	callq	*futures_util::lock::mutex::Waiter::register@GOTPCREL(%rip)
+	jmp	.LBB32_32
+
+.LBB32_16:
+	xorl	%r15d, %r15d
+	leaq	8(%rbx), %rcx
+	movb	16(%rbx), %al
+	testb	%al, %al
+	je	.LBB32_12
+
+.LBB32_17:
+	movq	%rcx, 16(%rsp)
+	movb	%r15b, 24(%rsp)
+	leaq	.L__unnamed_1(%rip), %rdi
+	leaq	.L__unnamed_2(%rip), %rcx
+	leaq	.L__unnamed_13(%rip), %r8
+	leaq	16(%rsp), %rdx
+	movl	$43, %esi
+	callq	*core::result::unwrap_failed@GOTPCREL(%rip)
+	jmp	.LBB32_65
+
+.LBB32_18:
+	movq	(%r13), %rax
+	movq	(%rax), %rdi
+	movq	8(%rax), %rax
+	callq	*(%rax)
+# %bb.19:
+	movq	%rdx, %rbp
+	movq	%r13, 72(%rsp)                  # 8-byte Spill
+	movq	56(%rbx), %r13
+	movq	%rax, 104(%rsp)
+	movq	%rdx, 112(%rsp)
+	addq	$1, 48(%rbx)
+	leaq	24(%rbx), %rdi
+	movq	40(%rbx), %rcx
+	cmpq	%r13, %rcx
+	jne	.LBB32_24
+# %bb.20:
+	movq	%rax, 24(%rsp)
+	movq	%rbp, 32(%rsp)
+	movq	$1, 16(%rsp)
+	movq	%r13, %rcx
+	cmpq	%r13, 32(%rbx)
+	jne	.LBB32_23
+# %bb.21:
+	movq	%r13, %rsi
+	callq	alloc::raw_vec::RawVec<T,A>::reserve_for_push
+# %bb.22:
+	movq	40(%rbx), %rcx
+
+.LBB32_23:
+	movq	24(%rbx), %rax
+	leaq	(%rcx,%rcx,2), %rdx
+	movq	32(%rsp), %rsi
+	movq	%rsi, 16(%rax,%rdx,8)
+	movups	16(%rsp), %xmm0
+	movups	%xmm0, (%rax,%rdx,8)
+	addq	$1, %rcx
+	movq	%rcx, 40(%rbx)
+	leaq	1(%r13), %rax
+	movq	%rax, 56(%rbx)
+	jmp	.LBB32_30
+
+.LBB32_24:
+	movq	%rax, 48(%rsp)                  # 8-byte Spill
+	movq	(%rdi), %rsi
+	xorl	%eax, %eax
+	leaq	(,%r13,2), %r14
+	addq	%r13, %r14
+	leaq	(%rsi,%r14,8), %rdx
+	cmpq	%r13, %rcx
+	cmovaq	%rdx, %rax
+	jbe	.LBB32_64
+# %bb.25:
+	cmpq	$0, (%rax)
+	jne	.LBB32_64
+# %bb.26:
+	movq	8(%rax), %rax
+	movq	%rax, 56(%rbx)
+	movq	%rdx, 40(%rsp)                  # 8-byte Spill
+	cmpq	$0, (%rdx)
+	je	.LBB32_29
+# %bb.27:
+	movq	16(%rsi,%r14,8), %rax
+	testq	%rax, %rax
+	je	.LBB32_29
+# %bb.28:
+	leaq	(%rsi,%r14,8), %rcx
+	addq	$16, %rcx
+	movq	%rcx, 56(%rsp)                  # 8-byte Spill
+	movq	8(%rsi,%r14,8), %rdi
+	movq	%rsi, 64(%rsp)                  # 8-byte Spill
+	callq	*24(%rax)
+	movq	64(%rsp), %rsi                  # 8-byte Reload
+
+.LBB32_29:
+	movq	40(%rsp), %rax                  # 8-byte Reload
+	movq	$1, (%rax)
+	movq	48(%rsp), %rax                  # 8-byte Reload
+	movq	%rax, 8(%rsi,%r14,8)
+	movq	%rbp, 16(%rsi,%r14,8)
+
+.LBB32_30:
+	movq	%r13, 32(%r12)
+	cmpq	$1, 48(%rbx)
+	movq	std::panicking::panic_count::GLOBAL_PANIC_COUNT@GOTPCREL(%rip), %r14
+	movq	72(%rsp), %r13                  # 8-byte Reload
+	jne	.LBB32_32
+# %bb.31:
+	lock		orq	$2, (%rbx)
+
+.LBB32_32:
+	testb	%r15b, %r15b
+	movq	80(%rsp), %rbp                  # 8-byte Reload
+	je	.LBB32_54
+
+.LBB32_33:
+	movq	(%rbp), %rdi
+	callq	*pthread_mutex_unlock@GOTPCREL(%rip)
+# %bb.34:
+	movq	(%rbx), %rax
+
+.LBB32_35:                              # =>This Inner Loop Header: Depth=1
+	movq	%rax, %rcx
+	orq	$1, %rcx
+	lock		cmpxchgq	%rcx, (%rbx)
+	jne	.LBB32_35
+# %bb.36:
+	testb	$1, %al
+	jne	.LBB32_52
+# %bb.37:
+	movq	%rbx, 16(%rsp)
+	movq	32(%r12), %rsi
+	movq	%rbx, %rdi
+	xorl	%edx, %edx
+	callq	futures_util::lock::mutex::Mutex<T>::remove_waker
+
+.LBB32_38:
+	movq	8(%rsp), %rax                   # 8-byte Reload
+	movq	$0, (%rax)
+	movq	%rbx, 8(%r12)
+	movq	(%r12), %rbx
+	lock		addq	$1, (%rbx)
+	jle	.LBB32_58
+# %bb.39:
+	movl	$40, %edi
+	movl	$8, %esi
+	callq	*__rust_alloc@GOTPCREL(%rip)
+	testq	%rax, %rax
+	je	.LBB32_59
+# %bb.40:
+	movq	%rax, %rdi
+	movq	%rbx, (%rax)
+	movb	$0, 16(%rax)
+	movq	8(%rsp), %rbx                   # 8-byte Reload
+	movq	%rax, (%rbx)
+	leaq	.L__unnamed_4(%rip), %rcx
+	movq	%rcx, 32(%r12)
+
+.LBB32_41:
+	leaq	24(%r12), %rbp
+	movq	%r13, %rsi
+	callq	*24(%rcx)
+# %bb.42:
+	cmpb	$2, %al
+	jne	.LBB32_44
+# %bb.43:
+	movb	$2, %cl
+	movb	$4, %bl
+	jmp	.LBB32_53
+
+.LBB32_44:
+	movq	(%rbx), %rdi
+	movq	32(%r12), %rax
+	callq	*(%rax)
+# %bb.45:
+	movq	32(%r12), %rax
+	movq	8(%rax), %rsi
+	testq	%rsi, %rsi
+	je	.LBB32_47
+# %bb.46:
+	movq	24(%r12), %rdi
+	movq	16(%rax), %rdx
+	callq	*__rust_dealloc@GOTPCREL(%rip)
+
+.LBB32_47:
+	leaq	8(%r12), %rdi
+	callq	core::ptr::drop_in_place<futures_util::lock::mutex::MutexGuard<playground::Client>>
+# %bb.48:
+	movq	(%r12), %rax
+	lock		subq	$1, (%rax)
+	movb	$1, %bl
+	jne	.LBB32_51
+# %bb.49:
+	#MEMBARRIER
+	movq	(%r12), %rdi
+	callq	alloc::sync::Arc<T>::drop_slow
+
+.LBB32_51:
+	xorl	%ecx, %ecx
+	jmp	.LBB32_53
+
+.LBB32_52:
+	movb	$2, %cl
+	movb	$3, %bl
+
+.LBB32_53:
+	movb	%bl, 16(%r12)
+	movl	%ecx, %eax
+	addq	$120, %rsp
+	popq	%rbx
+	popq	%r12
+	popq	%r13
+	popq	%r14
+	popq	%r15
+	popq	%rbp
+	retq
+
+.LBB32_54:
+	movabsq	$9223372036854775807, %rax      # imm = 0x7FFFFFFFFFFFFFFF
+	movq	(%r14), %rcx
+	testq	%rax, %rcx
+	je	.LBB32_33
+# %bb.55:
+	callq	*std::panicking::panic_count::is_zero_slow_path@GOTPCREL(%rip)
+# %bb.56:
+	testb	%al, %al
+	jne	.LBB32_33
+# %bb.57:
+	movb	$1, 16(%rbx)
+	jmp	.LBB32_33
+
+.LBB32_58:
+	ud2
+	ud2
+
+.LBB32_59:
+	movl	$40, %edi
+	movl	$8, %esi
+	callq	*alloc::alloc::handle_alloc_error@GOTPCREL(%rip)
+	ud2
+
+.LBB32_60:
+	callq	std::panicking::begin_panic
+	jmp	.LBB32_65
+
+.LBB32_61:
+	leaq	str.0(%rip), %rdi
+	leaq	.L__unnamed_14(%rip), %rdx
+	movl	$34, %esi
+	callq	*core::panicking::panic@GOTPCREL(%rip)
+	ud2
+
+.LBB32_62:
+	leaq	str.1(%rip), %rdi
+	leaq	.L__unnamed_14(%rip), %rdx
+	movl	$35, %esi
+	callq	*core::panicking::panic@GOTPCREL(%rip)
+	ud2
+
+.LBB32_63:
+	leaq	.L__unnamed_15(%rip), %rdi
+	leaq	.L__unnamed_16(%rip), %rdx
+	movl	$39, %esi
+	callq	*core::option::expect_failed@GOTPCREL(%rip)
+	jmp	.LBB32_65
+
+.LBB32_64:
+	leaq	.L__unnamed_17(%rip), %rdi
+	leaq	.L__unnamed_18(%rip), %rdx
+	movl	$40, %esi
+	callq	*core::panicking::panic@GOTPCREL(%rip)
+
+.LBB32_65:
+	ud2
+	movq	%rax, %rbx
+	movq	40(%rsp), %rax                  # 8-byte Reload
+	movq	$1, (%rax)
+	movq	48(%rsp), %rax                  # 8-byte Reload
+	movq	56(%rsp), %rcx                  # 8-byte Reload
+	movq	%rax, -8(%rcx)
+	movq	%rbp, (%rcx)
+	jmp	.LBB32_76
+	movq	%rax, %rbx
+	leaq	16(%rsp), %rdi
+	callq	core::ptr::drop_in_place<slab::Entry<futures_util::lock::mutex::Waiter>>
+	jmp	.LBB32_76
+	movq	%rax, %rbx
+	leaq	104(%rsp), %rdi
+	callq	core::ptr::drop_in_place<futures_util::lock::mutex::Waiter>
+	jmp	.LBB32_76
+	movq	%rax, %rbx
+	leaq	16(%rsp), %rdi
+	callq	core::ptr::drop_in_place<futures_util::lock::mutex::MutexGuard<playground::Client>>
+	jmp	.LBB32_80
+	movq	%rax, %rbx
+	jmp	.LBB32_82
+	movq	%rax, %rbx
+	leaq	16(%rsp), %rdi
+	callq	core::ptr::drop_in_place<std::sync::poison::PoisonError<std::sync::mutex::MutexGuard<slab::Slab<futures_util::lock::mutex::Waiter>>>>
+	jmp	.LBB32_80
+	movq	%rax, %rbx
+	leaq	16(%rsp), %rdi
+	callq	core::ptr::drop_in_place<futures_util::lock::mutex::MutexGuard<playground::Client>>
+	jmp	.LBB32_80
+	movq	%rax, %rbx
+	jmp	.LBB32_81
+	movq	%rax, %rbx
+	movq	24(%r12), %rdi
+	movq	32(%r12), %rsi
+	callq	alloc::alloc::box_free
+	jmp	.LBB32_78
+	movq	%rax, %rbx
+
+.LBB32_76:
+	leaq	88(%rsp), %rdi
+	callq	core::ptr::drop_in_place<std::sync::mutex::MutexGuard<slab::Slab<futures_util::lock::mutex::Waiter>>>
+	jmp	.LBB32_80
+	movq	%rax, %rbx
+	movq	%rbp, %rdi
+	callq	core::ptr::drop_in_place<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future+Output = core::result::Result<(),()>+core::marker::Send>>>
+
+.LBB32_78:
+	leaq	8(%r12), %rdi
+	callq	core::ptr::drop_in_place<futures_util::lock::mutex::MutexGuard<playground::Client>>
+	jmp	.LBB32_81
+	movq	%rax, %rbx
+
+.LBB32_80:
+	movq	8(%rsp), %rdi                   # 8-byte Reload
+	callq	core::ptr::drop_in_place<futures_util::lock::mutex::MutexLockFuture<playground::Client>>
+
+.LBB32_81:
+	movq	%r12, %rdi
+	callq	core::ptr::drop_in_place<alloc::sync::Arc<futures_util::lock::mutex::Mutex<playground::Client>>>
+
+.LBB32_82:
+	movb	$2, 16(%r12)
+	movq	%rbx, %rdi
+	callq	_Unwind_Resume@PLT
+	ud2
+
+.LJTI32_0:
+	.long	.LBB32_1-.LJTI32_0
+	.long	.LBB32_62-.LJTI32_0
+	.long	.LBB32_61-.LJTI32_0
+	.long	.LBB32_2-.LJTI32_0
+	.long	.LBB32_7-.LJTI32_0
+                                        # -- End function
+
+main:                                   # @main
+# %bb.0:
+	pushq	%rax
+	movq	%rsi, %rcx
+	movslq	%edi, %rdx
+	leaq	playground::main(%rip), %rax
+	movq	%rax, (%rsp)
+	leaq	.L__unnamed_6(%rip), %rsi
+	movq	%rsp, %rdi
+	callq	*std::rt::lang_start_internal@GOTPCREL(%rip)
+                                        # kill: def $eax killed $eax killed $rax
+	popq	%rcx
+	retq
+                                        # -- End function
+
+.L__unnamed_19:
+	.ascii	"src/main.rs"
+
+.L__unnamed_14:
+	.quad	.L__unnamed_19
+	.asciz	"\013\000\000\000\000\000\000\000\r\000\000\000\020\000\000"
+
+str.0:
+	.ascii	"`async fn` resumed after panicking"
+
+str.1:
+	.ascii	"`async fn` resumed after completion"
+
+.L__unnamed_17:
+	.ascii	"internal error: entered unreachable code"
+
+.L__unnamed_20:
+	.ascii	"/playground/.cargo/registry/src/github.com-1ecc6299db9ec823/slab-0.4.5/src/lib.rs"
+
+.L__unnamed_18:
+	.quad	.L__unnamed_20
+	.asciz	"Q\000\000\000\000\000\000\000\277\003\000\000\026\000\000"
+
+.L__unnamed_8:
+	.ascii	"invalid key"
+
+.L__unnamed_12:
+	.quad	.L__unnamed_20
+	.asciz	"Q\000\000\000\000\000\000\000\377\003\000\000\036\000\000"
+
+.L__unnamed_4:
+	.quad	core::ptr::drop_in_place<core::future::from_generator::GenFuture<playground::do_something::{{closure}}>>
+	.asciz	"(\000\000\000\000\000\000\000\b\000\000\000\000\000\000"
+	.quad	<core::future::from_generator::GenFuture<T> as core::future::future::Future>::poll
+
+.L__unnamed_5:
+	.ascii	"PoisonError"
+
+.L__unnamed_1:
+	.ascii	"called `Result::unwrap()` on an `Err` value"
+
+.L__unnamed_2:
+	.quad	core::ptr::drop_in_place<std::sync::poison::PoisonError<std::sync::mutex::MutexGuard<slab::Slab<futures_util::lock::mutex::Waiter>>>>
+	.asciz	"\020\000\000\000\000\000\000\000\b\000\000\000\000\000\000"
+	.quad	<std::sync::poison::PoisonError<T> as core::fmt::Debug>::fmt
+
+.L__unnamed_6:
+	.quad	core::ptr::drop_in_place<&str>
+	.asciz	"\b\000\000\000\000\000\000\000\b\000\000\000\000\000\000"
+	.quad	core::ops::function::FnOnce::call_once{{vtable.shim}}
+	.quad	std::rt::lang_start::{{closure}}
+	.quad	std::rt::lang_start::{{closure}}
+
+.L__unnamed_9:
+	.quad	core::ptr::drop_in_place<&str>
+	.asciz	"\020\000\000\000\000\000\000\000\b\000\000\000\000\000\000"
+	.quad	<std::panicking::begin_panic::PanicPayload<A> as core::panic::BoxMeUp>::take_box
+	.quad	<std::panicking::begin_panic::PanicPayload<A> as core::panic::BoxMeUp>::get
+
+.L__unnamed_10:
+	.quad	core::ptr::drop_in_place<&str>
+	.asciz	"\020\000\000\000\000\000\000\000\b\000\000\000\000\000\000"
+	.quad	<T as core::any::Any>::type_id
+
+.L__unnamed_21:
+	.ascii	"/playground/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-util-0.3.17/src/lock/mutex.rs"
+
+.L__unnamed_11:
+	.quad	.L__unnamed_21
+	.asciz	"a\000\000\000\000\000\000\000\216\000\000\0003\000\000"
+
+.L__unnamed_3:
+	.quad	.L__unnamed_21
+	.asciz	"a\000\000\000\000\000\000\000\247\000\000\0003\000\000"
+
+.L__unnamed_15:
+	.ascii	"polled MutexLockFuture after completion"
+
+.L__unnamed_16:
+	.quad	.L__unnamed_21
+	.asciz	"a\000\000\000\000\000\000\000\320\000\000\000 \000\000"
+
+.L__unnamed_13:
+	.quad	.L__unnamed_21
+	.asciz	"a\000\000\000\000\000\000\000\331\000\000\0004\000\000"
+
+.L__unnamed_7:
+	.quad	.L__unnamed_21
+	.asciz	"a\000\000\000\000\000\000\000\340\000\000\000\021\000\000"
