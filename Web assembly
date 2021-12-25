@@ -1,0 +1,69 @@
+Compiling playground v0.0.1 (/playground)
+error[E0433]: failed to resolve: use of undeclared crate or module `futures`
+ --> src/main.rs:3:5
+  |
+3 | use futures::future::{BoxFuture, FutureExt};
+  |     ^^^^^^^ use of undeclared crate or module `futures`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `futures`
+ --> src/main.rs:4:5
+  |
+4 | use futures::lock::Mutex;
+  |     ^^^^^^^ use of undeclared crate or module `futures`
+
+error[E0412]: cannot find type `Mutex` in this scope
+  --> src/main.rs:11:21
+   |
+11 |         client: Arc<Mutex<Client>>,
+   |                     ^^^^^ not found in this scope
+   |
+help: consider importing this struct
+   |
+1  | use std::sync::Mutex;
+   |
+
+error[E0412]: cannot find type `BoxFuture` in this scope
+   --> src/main.rs:12:6
+    |
+12  |   ) -> BoxFuture<'a, std::result::Result<(), ()>> {
+    |        ^^^^^^^^^ help: a trait with a similar name exists: `Future`
+
+error[E0433]: failed to resolve: use of undeclared type `Mutex`
+  --> src/main.rs:21:22
+   |
+21 |     let c = Arc::new(Mutex::new(Client {}));
+   |                      ^^^^^ not found in this scope
+   |
+help: consider importing this struct
+   |
+1  | use std::sync::Mutex;
+   |
+
+warning: unused import: `std::future::Future`
+ --> src/main.rs:2:5
+  |
+2 | use std::future::Future;
+  |     ^^^^^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+error[E0599]: no method named `boxed` found for opaque type `impl Future<Output = [async output]>` in the current scope
+  --> src/main.rs:17:7
+   |
+17 |     }.boxed()
+   |       ^^^^^ method not found in `impl Future<Output = [async output]>`
+
+error[E0599]: no method named `clone` found for struct `Arc<_>` in the current scope
+  --> src/main.rs:22:20
+   |
+22 |     do_something(c.clone());
+   |                    ^^^^^ method not found in `Arc<_>`
+   |
+   = note: `c` is a function, perhaps you wish to call it
+
+Some errors have detailed explanations: E0412, E0433, E0599.
+For more information about an error, try `rustc --explain E0412`.
+warning: `playground` (bin "playground") generated 1 warning
+error: could not compile `playground` due to 7 previous errors; 1 warning emitted
+
+Unable to locate file for WebAssembly output
